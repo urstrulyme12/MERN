@@ -13,14 +13,16 @@ function MainNavigation() {
 
     setDrawerIsOpen(true);
   }
+
+  //call back function
   const handleClose =()=>{
 
     setDrawerIsOpen(false);
   }
   return (
     <>
-    {drawerIsOpen && <Backdrop/>}
-    {drawerIsOpen && (<SideDrawer>
+    {drawerIsOpen && <Backdrop onClick={handleClose}/>}
+    {drawerIsOpen && (<SideDrawer show = {drawerIsOpen} onClick = {handleClose}>
       <nav className='main-navigation__drawer-nav'>
         <NavLinks/>
       </nav>

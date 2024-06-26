@@ -3,9 +3,10 @@ import {BrowserRouter as Router,Route,Redirect,Switch} from 'react-router-dom';
 import Users from './User/pages/Users';
 import NewPlace from './places/pages/NewPlace';
 
-const App = ()=> {
+function App() {
   return (
-    <Router>
+    <div className="App">
+       <Router>
       <Switch>
       <Route path="/" exact>
         <Users/>
@@ -17,6 +18,7 @@ const App = ()=> {
       </Switch>
 
     </Router>
+    </div>
   );
 }
 

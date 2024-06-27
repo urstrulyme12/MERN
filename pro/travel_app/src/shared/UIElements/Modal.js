@@ -7,12 +7,12 @@ import { CSSTransition } from "react-transition-group";
 const ModalOverlay = (props) => {
   const content = (
     <div className={`modal ${props.className}`} style={props.style}>
-      <header className={`model__header ${props.headerClass}`}>
+      <header className={`modal__header ${props.headerClass}`}>
         <h2>{props.header}</h2>
       </header>
       <form
         onSubmit={
-          props.onSubmit ? props.onSubmit : (event) => event.preventDefault
+          props.onSubmit ? props.onSubmit : (event) => event.preventDefault()
         }
       >
         <div className={`modal__content ${props.contentClass}`}>
@@ -36,9 +36,11 @@ function Modal(props) {
         in={props.show}
         mountOnEnter
         unmountOnExit
-        timeout={300}
+        timeout={100}
         className="modal"
-      ></CSSTransition>
+      >
+        <ModalOverlay {...props}/>
+      </CSSTransition>
     </>
   );
 }

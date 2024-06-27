@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PlaceItem.css";
 import Card from "../../shared/UIElements/Card";
 import Button from "../../shared/FormElements/Button";
+import Modal from "../../shared/UIElements/Modal";
 
 function PlaceItem(props) {
+  const [showMap, setShowMap] = useState(false);
+
+  const handleModelOpen = () => {
+    setShowMap(true);
+  };
+
+  const handleModelClose = () => {
+    setShowMap(false);
+  };
+
   return (
     <>
+      <Modal
+        show={showMap}
+        onCancel={handleModelClose}
+        header={props.address}
+        contentClass="place-item__modal-content"
+        footerClass="place-item__modal-actions"
+        footer={<Button onClick={handleModelClose}>CLOSE</Button>}
+      >
+        <div className="map-container">
+            <h2>Map</h2>
+        </div>
+      </Modal>
       <li className="place-item">
         <Card className="place-item__content">
           <div className="place-item__image">
@@ -17,7 +40,7 @@ function PlaceItem(props) {
             <p>{props.description}</p>
           </div>
           <div className="place-item__actions">
-            <Button inverse>VIEW ON MAP</Button>
+            <Button inverse onClick={handleModelOpen}>VIEW ON MAP</Button>
             <Button to={`/places/${props.id}`}>EDIT</Button>
             <Button danger>Delete</Button>
           </div>
